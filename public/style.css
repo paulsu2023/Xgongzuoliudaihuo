@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap');
+/* Keep thumbnail controls above the transparent file picker so preview and delete receive the click. */
+.upload input{z-index:1}.thumb-tools{z-index:2}.thumb-tools button{position:relative;z-index:3}
+.plan-source-upload{display:inline-block;margin-top:7px;border:1px solid var(--line);border-radius:5px;padding:5px 7px;font-size:11px;cursor:pointer}.plan-source-upload input{display:none}.plan-source-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .parallel-note{margin-top:18px;padding:10px 12px;background:#eef8d6;border:1px solid #d6ed9a;border-radius:7px;color:#40522d;font-size:12px;line-height:1.6}
 .close{position:absolute;right:14px;top:12px;z-index:3;display:inline-flex;align-items:center;gap:7px;border:1px solid #f0a09a;background:#b93e35;color:#fff;border-radius:7px;padding:8px 12px;font:700 13px 'Noto Sans SC',sans-serif;line-height:1;cursor:pointer}.close:hover{background:#d54d42}
 dialog .close{position:absolute;right:14px;top:12px;z-index:3;display:inline-flex;align-items:center;gap:7px;border:1px solid #f0a09a;background:#b93e35;color:#fff;border-radius:7px;padding:8px 12px;font:700 13px 'Noto Sans SC',sans-serif;line-height:1;cursor:pointer}dialog .close:hover{background:#d54d42}

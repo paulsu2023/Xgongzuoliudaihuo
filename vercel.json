@@ -5,6 +5,8 @@
     { "src": "api/analyze.js", "use": "@vercel/node" },
     { "src": "api/reference.js", "use": "@vercel/node" },
     { "src": "api/prompts.js", "use": "@vercel/node" },
+    { "src": "api/video-prompts.js", "use": "@vercel/node" },
+    { "src": "api/video.js", "use": "@vercel/node" },
     { "src": "public/**", "use": "@vercel/static" }
   ],
   "routes": [
@@ -12,6 +14,8 @@
     { "src": "/api/analyze", "dest": "/api/analyze.js" },
     { "src": "/api/reference", "dest": "/api/reference.js" },
     { "src": "/api/prompts", "dest": "/api/prompts.js" },
+    { "src": "/api/video-prompts", "dest": "/api/video-prompts.js" },
+    { "src": "/api/video", "dest": "/api/video.js" },
     { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }

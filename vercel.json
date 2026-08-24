@@ -7,6 +7,8 @@
     { "src": "api/prompts.js", "use": "@vercel/node" },
     { "src": "api/video-prompts.js", "use": "@vercel/node" },
     { "src": "api/video.js", "use": "@vercel/node" },
+    { "src": "api/auth.js", "use": "@vercel/node" },
+    { "src": "api/library.js", "use": "@vercel/node" },
     { "src": "public/**", "use": "@vercel/static" }
   ],
   "routes": [
@@ -16,6 +18,8 @@
     { "src": "/api/prompts", "dest": "/api/prompts.js" },
     { "src": "/api/video-prompts", "dest": "/api/video-prompts.js" },
     { "src": "/api/video", "dest": "/api/video.js" },
+    { "src": "/api/auth", "dest": "/api/auth.js" },
+    { "src": "/api/library", "dest": "/api/library.js" },
     { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }

@@ -1,0 +1,12 @@
+[
+  {
+    "origin": [
+      "https://jack.tk365.xyz",
+      "https://tiktokus-tawny.vercel.app",
+      "http://127.0.0.1:4318"
+    ],
+    "method": ["GET", "PUT"],
+    "responseHeader": ["Content-Type"],
+    "maxAgeSeconds": 3600
+  }
+]

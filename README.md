@@ -9,7 +9,7 @@
 3. 上传的产品图片直接作为视觉依据，生成 Product Reference Sheet；无需先确认产品识别结果。
 4. Vertex 图像模型生成 Product / Character / Location Reference Sheet；可放大、下载和重新生成。
 5. 基于三张 Sheet 生成每 10 秒一段的带货视频 Prompt，支持单段或全部复制。
-6. 项目状态保存于本机浏览器，不会上传到第三方数据库。
+6. 登录后，产品、模特、场景图片会保存到本人私有的 Google Cloud 素材库，可在视频策划中直接复用；未登录时项目状态仅保存在本机浏览器。
 
 ## Vertex 凭据
 
@@ -25,6 +25,8 @@
 - `VERTEX_LOCATION=global`
 - `VERTEX_TEXT_MODEL=gemini-3.5-flash`
 - `VERTEX_IMAGE_MODEL=gemini-3.1-flash-image`
+- `GCS_ASSET_BUCKET=aerial-jigsaw-498805-c0-ai-commerce-assets`
+- `IDENTITY_PLATFORM_API_KEY`：Identity Platform 的服务端密钥，设为 Sensitive，绝不使用 `NEXT_PUBLIC_` 或写入浏览器代码。
 
 部署版单次请求需控制在约 4MB 内；浏览器端不保存服务账号。
 

@@ -9,7 +9,7 @@
 3. 上传的产品图片直接作为视觉依据，生成 Product Reference Sheet；无需先确认产品识别结果。
 4. Vertex 图像模型生成 Product / Character / Location Reference Sheet；可放大、下载和重新生成。
 5. 基于三张 Sheet 生成每 10 秒一段的带货视频 Prompt，支持单段或全部复制。
-6. 登录后，产品、模特、场景图片会保存到本人私有的 Google Cloud 素材库，可在视频策划中直接复用；未登录时项目状态仅保存在本机浏览器。
+6. 图片不会自动上传到云端。用户可手动保存原始上传图或生成参考图到本人私有的 Google Cloud 素材库；视频策划仅复用已保存的生成细节图，原始上传图保留在当前项目上方。
 
 ## Vertex 凭据
 

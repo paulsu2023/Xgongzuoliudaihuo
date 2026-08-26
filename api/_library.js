@@ -102,7 +102,7 @@ async function firestore(method, url, body) {
 }
 function assetFromDocument(document) {
   const field = document.fields || {}; const value = (name) => field[name]?.stringValue || '';
-  return { id: document.name?.split('/').pop(), name: value('name'), type: value('type'), contentType: value('contentType'), object: value('object'), createdAt: value('createdAt') };
+  return { id: document.name?.split('/').pop(), name: value('name'), type: value('type'), origin: value('origin') || 'original', contentType: value('contentType'), object: value('object'), createdAt: value('createdAt') };
 }
 function fields(asset) { return { fields: Object.fromEntries(Object.entries(asset).map(([key, value]) => [key, { stringValue: String(value || '') }])) }; }
 
@@ -119,7 +119,8 @@ async function library(req, input) {
   const user = await verifyUser(req);
   if (input.action === 'list') {
     const data = await firestore('GET', `${firestoreUrl(user.uid)}?pageSize=100&orderBy=createdAt%20desc`);
-    return { assets: (data.documents || []).map(assetFromDocument) };
+    const assets = (data.documents || []).map(assetFromDocument).filter((asset) => asset.object.startsWith(`users/${user.uid}/assets/`));
+    return { assets: assets.map((asset) => ({ ...asset, thumbnailUrl: signedUrl('GET', asset.object, '', 86400) })) };
   }
   if (input.action === 'upload-url') {
     const mimeType = String(input.mimeType || ''); if (!['image/jpeg', 'image/png', 'image/webp'].includes(mimeType)) throw new Error('仅支持 JPG、PNG 或 WEBP 图片。');
@@ -129,7 +130,7 @@ async function library(req, input) {
   }
   if (input.action === 'save') {
     const object = String(input.object || ''); if (!object.startsWith(`users/${user.uid}/assets/`)) throw new Error('无效的素材存储地址。');
-    const assetId = crypto.randomUUID(); const asset = { name: String(input.name || '未命名素材').slice(0, 160), type: ['product', 'character', 'location'].includes(input.type) ? input.type : 'product', contentType: String(input.contentType || 'image/jpeg'), object, createdAt: new Date().toISOString() };
+    const assetId = crypto.randomUUID(); const asset = { name: String(input.name || '未命名素材').slice(0, 160), type: ['product', 'character', 'location'].includes(input.type) ? input.type : 'product', origin: input.origin === 'generated' ? 'generated' : 'original', contentType: String(input.contentType || 'image/jpeg'), object, createdAt: new Date().toISOString() };
     await firestore('PATCH', firestoreUrl(user.uid, assetId), fields(asset)); return { asset: { id: assetId, ...asset } };
   }
   const assetId = String(input.assetId || ''); if (!assetId) throw new Error('缺少素材编号。');
